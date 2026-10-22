@@ -1,0 +1,2542 @@
+/* =========================================================
+   DISASTERWATCH AI
+   Professional Dashboard UI
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+
+  --text: #111827;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+
+  --border: #e5e7eb;
+
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --primary-soft: #eef2ff;
+
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
+
+  --success: #059669;
+  --success-soft: #ecfdf5;
+
+  --warning: #d97706;
+  --warning-soft: #fffbeb;
+
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 16px 44px rgba(15, 23, 42, 0.10);
+
+  --focus-ring: 0 0 0 3px rgba(79, 70, 229, 0.32);
+
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: var(--bg);
+  color: var(--text);
+  min-width: 320px;
+  line-height: 1.5;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+/* Custom scrollbar — subtle, matches palette (webkit browsers) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+  border: 2px solid var(--bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Global accessible focus state for interactive elements without a
+   more specific focus treatment defined below */
+a:focus-visible,
+button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+.app {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 42px;
+
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--border);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: var(--primary);
+  color: white;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+
+  box-shadow: 0 5px 14px rgba(79, 70, 229, 0.25);
+}
+
+.brand h1 {
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.4px;
+  color: var(--text);
+}
+
+.brand p {
+  margin-top: 1px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.backend-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 13px;
+
+  border: 1px solid #d1fae5;
+  border-radius: 999px;
+
+  background: #f0fdf4;
+  color: #047857;
+
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #10b981;
+
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+}
+
+/* =========================================================
+   MAIN DASHBOARD
+   ========================================================= */
+
+.dashboard {
+  width: min(1380px, calc(100% - 64px));
+
+  margin: 0 auto;
+
+  padding: 38px 0 60px;
+}
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.welcome-section {
+  margin-bottom: 30px;
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  letter-spacing: 1.1px;
+
+  color: var(--primary);
+}
+
+.welcome-section h2 {
+  font-size: clamp(28px, 4vw, 42px);
+
+  line-height: 1.1;
+
+  letter-spacing: -1.5px;
+
+  font-weight: 800;
+
+  color: var(--text);
+}
+
+.welcome-section h2 span {
+  color: var(--primary);
+}
+
+.welcome-text {
+  max-width: 690px;
+
+  margin-top: 12px;
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   STATISTICS
+   ========================================================= */
+
+.stats-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 16px;
+
+  margin-bottom: 22px;
+}
+
+.stat-card {
+  min-height: 112px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 20px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-md);
+
+  border-color: #d8dee9;
+}
+
+.stat-icon {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.reports-icon {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.disaster-icon {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.safe-icon {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.ai-icon {
+  background: #f3e8ff;
+  color: #9333ea;
+
+  font-size: 12px;
+}
+
+.stat-card p {
+  color: var(--text-muted);
+
+  font-size: 12px;
+  font-weight: 550;
+
+  margin-bottom: 4px;
+}
+
+.stat-card h3 {
+  color: var(--text);
+
+  font-size: 23px;
+
+  line-height: 1;
+
+  font-weight: 750;
+
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   CONTENT GRID
+   ========================================================= */
+
+.content-grid {
+  display: grid;
+
+  grid-template-columns: 1.05fr 0.95fr;
+
+  gap: 20px;
+
+  margin-bottom: 22px;
+}
+
+.analysis-card,
+.result-card,
+.recent-section {
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow-sm);
+}
+
+/* =========================================================
+   CARD HEADINGS
+   ========================================================= */
+
+.analysis-card,
+.result-card {
+  padding: 25px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 10px;
+}
+
+.section-heading h3 {
+  font-size: 18px;
+
+  letter-spacing: -0.4px;
+
+  font-weight: 750;
+
+  color: var(--text);
+}
+
+.model-badge {
+  padding: 6px 10px;
+
+  border-radius: 7px;
+
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  font-size: 10px;
+
+  font-weight: 750;
+
+  letter-spacing: 0.5px;
+
+  text-transform: uppercase;
+}
+
+.section-description {
+  color: var(--text-secondary);
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  margin-bottom: 18px;
+}
+
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
+
+textarea {
+  width: 100%;
+
+  min-height: 155px;
+
+  resize: vertical;
+
+  display: block;
+
+  padding: 15px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: var(--surface-soft);
+
+  color: var(--text);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+textarea::placeholder {
+  color: #a1aab8;
+}
+
+textarea:focus {
+  border-color: #818cf8;
+
+  background: white;
+
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.09);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.analysis-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 14px;
+}
+
+.analyze-button {
+  min-height: 42px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 0 18px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: var(--primary);
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.analyze-button:hover:not(:disabled) {
+  background: var(--primary-dark);
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 7px 18px rgba(79, 70, 229, 0.2);
+}
+
+.analyze-button:active:not(:disabled) {
+  transform: translateY(0);
+
+  box-shadow: 0 3px 10px rgba(79, 70, 229, 0.18);
+}
+
+.analyze-button:focus-visible {
+  outline: none;
+
+  box-shadow:
+    0 0 0 2px white,
+    0 0 0 4px var(--primary);
+}
+
+.analyze-button:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+.analyze-button span {
+  font-size: 17px;
+
+  line-height: 1;
+}
+
+.clear-button {
+  min-height: 42px;
+
+  padding: 0 15px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: var(--text-secondary);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.clear-button:hover {
+  background: var(--surface-soft);
+
+  border-color: #cbd5e1;
+
+  color: var(--text);
+}
+
+.clear-button:active {
+  transform: translateY(1px);
+}
+
+.clear-button:focus-visible {
+  outline: none;
+
+  box-shadow: var(--focus-ring);
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.spinner {
+  width: 14px;
+  height: 14px;
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+
+  border-top-color: white;
+
+  border-radius: 50%;
+
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   EMPTY RESULT
+   ========================================================= */
+
+.empty-result {
+  min-height: 295px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  text-align: center;
+
+  padding: 30px;
+}
+
+.empty-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+
+  border-radius: 14px;
+
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.empty-result h4,
+.no-reports h4 {
+  margin-bottom: 5px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  color: var(--text);
+}
+
+.empty-result p,
+.no-reports p {
+  max-width: 300px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   PREDICTION RESULT
+   ========================================================= */
+
+.prediction-result {
+  padding-top: 6px;
+}
+
+.prediction-status {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 15px;
+
+  margin-bottom: 22px;
+
+  border-radius: 12px;
+
+  border: 1px solid;
+}
+
+.prediction-status.danger {
+  background: var(--danger-soft);
+
+  border-color: #fecaca;
+}
+
+.prediction-status.safe {
+  background: var(--success-soft);
+
+  border-color: #a7f3d0;
+}
+
+.prediction-symbol {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  font-size: 17px;
+
+  font-weight: 800;
+}
+
+.prediction-status.danger .prediction-symbol {
+  background: #fee2e2;
+
+  color: var(--danger);
+}
+
+.prediction-status.safe .prediction-symbol {
+  background: #d1fae5;
+
+  color: var(--success);
+}
+
+.prediction-status span {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+
+  font-weight: 650;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.6px;
+}
+
+.prediction-status strong {
+  display: block;
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+.prediction-status.danger strong {
+  color: var(--danger);
+}
+
+.prediction-status.safe strong {
+  color: var(--success);
+}
+
+/* =========================================================
+   PROBABILITIES
+   ========================================================= */
+
+.probability-section {
+  margin-bottom: 22px;
+}
+
+.probability-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 7px;
+
+  color: var(--text-secondary);
+
+  font-size: 11px;
+
+  font-weight: 600;
+}
+
+.probability-header strong {
+  color: var(--text);
+
+  font-size: 12px;
+
+  font-weight: 750;
+
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-bar {
+  width: 100%;
+
+  height: 7px;
+
+  overflow: hidden;
+
+  margin-bottom: 15px;
+
+  border-radius: 999px;
+
+  background: #eef2f7;
+
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.progress-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  transition: width 0.5s ease;
+}
+
+.disaster-progress {
+  background: var(--danger);
+}
+
+.safe-progress {
+  background: var(--success);
+}
+
+/* =========================================================
+   ANALYZED REPORT
+   ========================================================= */
+
+.analyzed-report {
+  padding: 14px;
+
+  border-radius: 10px;
+
+  background: var(--surface-soft);
+
+  border: 1px solid #edf0f4;
+}
+
+.analyzed-report span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.6px;
+}
+
+.analyzed-report p {
+  color: var(--text-secondary);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+
+  word-break: break-word;
+}
+
+/* =========================================================
+   BACKEND ERROR
+   ========================================================= */
+
+.backend-error {
+  min-height: 295px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  text-align: center;
+
+  padding: 25px;
+}
+
+.error-symbol {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 12px;
+
+  border-radius: 12px;
+
+  background: var(--danger-soft);
+
+  color: var(--danger);
+
+  font-weight: 800;
+}
+
+.backend-error h4 {
+  margin-bottom: 5px;
+
+  font-size: 14px;
+}
+
+.backend-error p {
+  margin-bottom: 6px;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+}
+
+.backend-error small {
+  color: var(--text-muted);
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   RECENT REPORTS
+   ========================================================= */
+
+.recent-section {
+  padding: 25px;
+}
+
+.recent-heading {
+  align-items: center;
+
+  margin-bottom: 18px;
+}
+
+.report-count {
+  padding: 6px 10px;
+
+  border-radius: 7px;
+
+  background: var(--surface-soft);
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+
+  font-weight: 650;
+}
+
+.no-reports {
+  min-height: 190px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  text-align: center;
+
+  border: 1px dashed #dce2ea;
+
+  border-radius: 12px;
+
+  background: #fafbfc;
+}
+
+.no-reports .empty-icon {
+  width: 42px;
+  height: 42px;
+
+  margin-bottom: 10px;
+}
+
+/* =========================================================
+   REPORT LIST
+   ========================================================= */
+
+.reports-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.report-row {
+  display: grid;
+
+  grid-template-columns: 40px minmax(0, 1fr) 90px 115px;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 13px 14px;
+
+  border: 1px solid #edf0f4;
+
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.report-row:hover {
+  background: #fafbff;
+
+  border-color: #dfe4ec;
+}
+
+.report-status {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+.report-danger {
+  background: var(--danger-soft);
+
+  color: var(--danger);
+}
+
+.report-safe {
+  background: var(--success-soft);
+
+  color: var(--success);
+}
+
+.report-content {
+  min-width: 0;
+}
+
+.report-content p {
+  overflow: hidden;
+
+  margin-bottom: 2px;
+
+  color: var(--text);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.report-content span {
+  color: var(--text-muted);
+
+  font-size: 10px;
+}
+
+.report-probability {
+  text-align: right;
+}
+
+.report-probability strong {
+  display: block;
+
+  color: var(--text);
+
+  font-size: 13px;
+
+  font-weight: 750;
+
+  font-variant-numeric: tabular-nums;
+}
+
+.report-probability span {
+  color: var(--text-muted);
+
+  font-size: 9px;
+}
+
+.report-label {
+  justify-self: end;
+
+  padding: 6px 9px;
+
+  border-radius: 7px;
+
+  font-size: 9px;
+
+  font-weight: 750;
+
+  letter-spacing: 0.3px;
+}
+
+.label-danger {
+  background: var(--danger-soft);
+
+  color: var(--danger);
+}
+
+.label-safe {
+  background: var(--success-soft);
+
+  color: var(--success);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .header {
+    height: auto;
+
+    padding: 15px 20px;
+
+    gap: 12px;
+  }
+
+  .backend-status {
+    display: none;
+  }
+
+  .dashboard {
+    width: min(100% - 32px, 600px);
+
+    padding-top: 28px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-section h2 {
+    font-size: 30px;
+  }
+
+  .analysis-card,
+  .result-card,
+  .recent-section {
+    padding: 20px;
+  }
+
+  .report-row {
+    grid-template-columns: 38px minmax(0, 1fr);
+
+    gap: 10px;
+  }
+
+  .report-probability,
+  .report-label {
+    display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .dashboard {
+    width: calc(100% - 24px);
+
+    padding-top: 22px;
+  }
+
+  .brand p {
+    display: none;
+  }
+
+  .brand h1 {
+    font-size: 16px;
+  }
+
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .welcome-section h2 {
+    font-size: 27px;
+  }
+
+  .analysis-actions {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .analyze-button,
+  .clear-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   LIVE EARTHQUAKE SECTION
+   ========================================================= */
+
+.earthquake-section {
+  margin-top: 28px;
+}
+
+/* ---------------------------------------------------------
+   EARTHQUAKE HEADER
+   --------------------------------------------------------- */
+
+.earthquake-section .recent-heading {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.earthquake-header-right {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------
+   LIVE BADGE
+   --------------------------------------------------------- */
+
+.live-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 7px 12px;
+
+  border-radius: 999px;
+
+  background: #fff1f2;
+
+  color: #dc2626;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #ef4444;
+
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+
+  animation: livePulse 1.7s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.45;
+
+    transform: scale(0.75);
+  }
+}
+
+/* ---------------------------------------------------------
+   REFRESH BUTTON
+   --------------------------------------------------------- */
+
+.refresh-button {
+  border: 1px solid #e2e8f0;
+
+  background: #ffffff;
+
+  color: #334155;
+
+  padding: 8px 14px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.refresh-button:hover:not(:disabled) {
+  background: #f8fafc;
+
+  border-color: #cbd5e1;
+
+  transform: translateY(-1px);
+}
+
+.refresh-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.refresh-button:focus-visible {
+  outline: none;
+
+  box-shadow: var(--focus-ring);
+}
+
+.refresh-button:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------
+   LAST UPDATED
+   --------------------------------------------------------- */
+
+.earthquake-updated {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin: 4px 0 20px;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+.earthquake-updated span {
+  color: #94a3b8;
+}
+
+/* ---------------------------------------------------------
+   EARTHQUAKE LIST
+   --------------------------------------------------------- */
+
+.earthquake-list {
+  display: flex;
+
+  flex-direction: column;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+/* ---------------------------------------------------------
+   EARTHQUAKE ROW
+   --------------------------------------------------------- */
+
+.earthquake-row {
+  display: grid;
+
+  grid-template-columns: 72px minmax(0, 1fr) auto;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 18px 20px;
+
+  border-bottom: 1px solid #eef2f7;
+
+  transition: background 0.2s ease;
+}
+
+.earthquake-row:last-child {
+  border-bottom: none;
+}
+
+.earthquake-row:hover {
+  background: #f8fafc;
+}
+
+/* ---------------------------------------------------------
+   MAGNITUDE
+   --------------------------------------------------------- */
+
+.earthquake-magnitude {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.earthquake-magnitude strong {
+  font-size: 20px;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  font-variant-numeric: tabular-nums;
+}
+
+.earthquake-magnitude span {
+  margin-top: 5px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.6px;
+}
+
+.magnitude-low {
+  background: #f0fdf4;
+
+  color: #15803d;
+}
+
+.magnitude-medium {
+  background: #fffbeb;
+
+  color: #b45309;
+}
+
+.magnitude-high {
+  background: #fff1f2;
+
+  color: #dc2626;
+}
+
+/* ---------------------------------------------------------
+   EARTHQUAKE INFORMATION
+   --------------------------------------------------------- */
+
+.earthquake-info {
+  min-width: 0;
+}
+
+.earthquake-place {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  margin-bottom: 8px;
+}
+
+.earthquake-place strong {
+  color: #0f172a;
+
+  font-size: 15px;
+
+  font-weight: 750;
+
+  line-height: 1.4;
+}
+
+/* ---------------------------------------------------------
+   MAGNITUDE LABEL
+   --------------------------------------------------------- */
+
+.magnitude-label {
+  display: inline-flex;
+
+  padding: 4px 8px;
+
+  border-radius: 6px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.4px;
+}
+
+/* ---------------------------------------------------------
+   EARTHQUAKE META
+   --------------------------------------------------------- */
+
+.earthquake-meta {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 16px;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+.earthquake-meta span {
+  display: inline-flex;
+
+  align-items: center;
+
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   USGS LINK
+   --------------------------------------------------------- */
+
+.earthquake-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 8px 12px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 8px;
+
+  color: #475569;
+
+  background: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.earthquake-link:hover {
+  background: #f8fafc;
+
+  color: #2563eb;
+
+  border-color: #bfdbfe;
+}
+
+.earthquake-link:focus-visible {
+  outline: none;
+
+  box-shadow: var(--focus-ring);
+}
+
+/* ---------------------------------------------------------
+   EARTHQUAKE LOADING
+   --------------------------------------------------------- */
+
+.earthquake-loading {
+  min-height: 180px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+}
+
+.earthquake-loading p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+.earthquake-spinner {
+  width: 28px;
+  height: 28px;
+
+  border: 3px solid #e2e8f0;
+
+  border-top-color: #6366f1;
+
+  border-radius: 50%;
+
+  animation: earthquakeSpin 0.8s linear infinite;
+}
+
+@keyframes earthquakeSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------------------------------------------------------
+   EARTHQUAKE ERROR
+   --------------------------------------------------------- */
+
+.earthquake-error {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 18px;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 12px;
+
+  background: #fff7f7;
+}
+
+.earthquake-error h4 {
+  margin: 0 0 4px;
+
+  color: #991b1b;
+
+  font-size: 14px;
+}
+
+.earthquake-error p {
+  margin: 0;
+
+  color: #b91c1c;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   LIVE DISASTER ALERTS
+   ========================================================= */
+
+.disaster-alerts-section {
+  margin-top: 28px;
+
+  padding: 25px;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 16px;
+
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------------------------------------------------------
+   DISASTER HEADER
+   --------------------------------------------------------- */
+
+.disaster-alerts-section .recent-heading {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 8px;
+}
+
+.disaster-alerts-section .recent-heading h3 {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: 18px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.4px;
+
+  color: #0f172a;
+}
+
+/* ---------------------------------------------------------
+   DISASTER HEADER RIGHT
+   --------------------------------------------------------- */
+
+.disaster-alerts-section .earthquake-header-right {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+/* ---------------------------------------------------------
+   DISASTER SUMMARY (reserved for a future count strip)
+   --------------------------------------------------------- */
+
+.disaster-summary {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 16px;
+}
+
+.disaster-summary-item {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 7px 10px;
+
+  border-radius: 8px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  color: #475569;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+.disaster-summary-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+}
+
+.disaster-summary-dot.red {
+  background: #dc2626;
+}
+
+.disaster-summary-dot.orange {
+  background: #f59e0b;
+}
+
+.disaster-summary-dot.green {
+  background: #059669;
+}
+
+/* ---------------------------------------------------------
+   DISASTER ALERT LIST
+   --------------------------------------------------------- */
+
+.disaster-alert-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+/* ---------------------------------------------------------
+   DISASTER ALERT ROW
+   --------------------------------------------------------- */
+
+.disaster-alert-row {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 15px 16px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.disaster-alert-row:hover {
+  transform: translateY(-1px);
+
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+
+/* ---------------------------------------------------------
+   RED ALERT
+   --------------------------------------------------------- */
+
+.disaster-alert-row.alert-red {
+  border-color: #fecaca;
+
+  background: linear-gradient(90deg, #fffafa 0%, #ffffff 32%);
+}
+
+.disaster-alert-row.alert-red::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  background: #dc2626;
+}
+
+/* ---------------------------------------------------------
+   ORANGE ALERT
+   --------------------------------------------------------- */
+
+.disaster-alert-row.alert-orange {
+  border-color: #fed7aa;
+
+  background: linear-gradient(90deg, #fffdf8 0%, #ffffff 32%);
+}
+
+.disaster-alert-row.alert-orange::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  background: #f59e0b;
+}
+
+/* ---------------------------------------------------------
+   GREEN ALERT
+   --------------------------------------------------------- */
+
+.disaster-alert-row.alert-green {
+  border-color: #a7f3d0;
+
+  background: linear-gradient(90deg, #f8fffb 0%, #ffffff 32%);
+}
+
+.disaster-alert-row.alert-green::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  background: #059669;
+}
+
+/* ---------------------------------------------------------
+   UNKNOWN ALERT
+   --------------------------------------------------------- */
+
+.disaster-alert-row.alert-unknown {
+  border-color: #e2e8f0;
+
+  background: #ffffff;
+}
+
+.disaster-alert-row.alert-unknown::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  background: #94a3b8;
+}
+
+/* ---------------------------------------------------------
+   DISASTER ICON
+   --------------------------------------------------------- */
+
+.disaster-alert-icon {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  font-size: 18px;
+
+  font-weight: 800;
+
+  flex-shrink: 0;
+}
+
+.disaster-alert-icon.alert-red {
+  background: #fee2e2;
+
+  color: #dc2626;
+
+  box-shadow:
+    inset 0 0 0 1px #fecaca,
+    0 4px 10px rgba(220, 38, 38, 0.08);
+}
+
+.disaster-alert-icon.alert-orange {
+  background: #ffedd5;
+
+  color: #ea580c;
+
+  box-shadow:
+    inset 0 0 0 1px #fed7aa,
+    0 4px 10px rgba(234, 88, 12, 0.08);
+}
+
+.disaster-alert-icon.alert-green {
+  background: #d1fae5;
+
+  color: #059669;
+
+  box-shadow:
+    inset 0 0 0 1px #a7f3d0,
+    0 4px 10px rgba(5, 150, 105, 0.08);
+}
+
+.disaster-alert-icon.alert-unknown {
+  background: #f1f5f9;
+
+  color: #64748b;
+
+  box-shadow: inset 0 0 0 1px #e2e8f0;
+}
+
+/* ---------------------------------------------------------
+   DISASTER CONTENT
+   (matches the "disaster-alert-info" / "disaster-alert-meta"
+   class names rendered by App.jsx)
+   --------------------------------------------------------- */
+
+.disaster-alert-info {
+  min-width: 0;
+}
+
+.disaster-alert-title {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 6px;
+}
+
+.disaster-alert-title strong {
+  color: #0f172a;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  line-height: 1.35;
+}
+
+.disaster-type-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 3px 7px;
+
+  border-radius: 5px;
+
+  background: #f1f5f9;
+
+  color: #64748b;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.6px;
+
+  text-transform: uppercase;
+}
+
+.disaster-alert-meta {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+.disaster-alert-meta span {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 4px;
+}
+
+/* ---------------------------------------------------------
+   ALERT LEVEL
+   --------------------------------------------------------- */
+
+.disaster-alert-level {
+  min-width: 96px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 8px 11px;
+
+  border-radius: 9px;
+
+  border: 1px solid;
+
+  text-align: left;
+}
+
+.disaster-alert-level.alert-red {
+  background: #fff1f2;
+
+  border-color: #fecaca;
+
+  color: #b91c1c;
+}
+
+.disaster-alert-level.alert-orange {
+  background: #fff7ed;
+
+  border-color: #fed7aa;
+
+  color: #c2410c;
+}
+
+.disaster-alert-level.alert-green {
+  background: #ecfdf5;
+
+  border-color: #a7f3d0;
+
+  color: #047857;
+}
+
+.disaster-alert-level.alert-unknown {
+  background: #f8fafc;
+
+  border-color: #e2e8f0;
+
+  color: #64748b;
+}
+
+.alert-level-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  flex-shrink: 0;
+}
+
+.alert-red .alert-level-dot {
+  background: #dc2626;
+
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+.alert-orange .alert-level-dot {
+  background: #f59e0b;
+
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.12);
+}
+
+.alert-green .alert-level-dot {
+  background: #059669;
+
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+}
+
+.alert-unknown .alert-level-dot {
+  background: #94a3b8;
+}
+
+.disaster-alert-level small {
+  display: block;
+
+  margin-bottom: 1px;
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  opacity: 0.7;
+}
+
+.disaster-alert-level strong {
+  display: block;
+
+  font-size: 10px;
+
+  font-weight: 850;
+
+  letter-spacing: 0.3px;
+}
+
+/* ---------------------------------------------------------
+   DISASTER LOADING / ERROR
+   (App.jsx reuses .earthquake-loading and .earthquake-error
+   for this section, so no separate rules are required here —
+   kept for backward compatibility if you ever split them out)
+   --------------------------------------------------------- */
+
+.disaster-alerts-updated {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 14px;
+
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+.disaster-alerts-updated span {
+  color: #94a3b8;
+}
+
+/* =========================================================
+   LIVE DISASTER MAP
+   ========================================================= */
+
+.disaster-map-section {
+  margin-top: 28px;
+}
+
+.disaster-map-container {
+  position: relative;
+
+  width: 100%;
+
+  height: 520px;
+
+  overflow: hidden;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 14px;
+
+  background: #e5e7eb;
+
+  box-shadow: var(--shadow-md);
+}
+
+.disaster-map {
+  width: 100%;
+
+  height: 100%;
+
+  min-height: 520px;
+
+  z-index: 1;
+}
+
+.map-legend {
+  position: absolute;
+
+  left: 16px;
+
+  bottom: 16px;
+
+  z-index: 1000;
+
+  padding: 12px 15px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 10px;
+
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.12);
+
+  font-size: 12px;
+}
+
+.map-legend-title {
+  margin-bottom: 7px;
+
+  color: #111827;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.map-legend-item {
+  margin-top: 4px;
+
+  color: #475569;
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   MOBILE - EARTHQUAKE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .earthquake-section .recent-heading {
+    flex-direction: column;
+  }
+
+  .earthquake-header-right {
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+  .earthquake-row {
+    grid-template-columns: 58px minmax(0, 1fr);
+
+    gap: 14px;
+
+    padding: 16px;
+  }
+
+  .earthquake-magnitude {
+    width: 54px;
+    height: 54px;
+  }
+
+  .earthquake-link {
+    grid-column: 2;
+
+    justify-self: start;
+  }
+
+  .earthquake-meta {
+    gap: 8px 14px;
+  }
+
+  .earthquake-updated {
+    flex-wrap: wrap;
+  }
+
+  /* -------------------------------------------------------
+     DISASTER ALERT MOBILE
+     ------------------------------------------------------- */
+
+  .disaster-alerts-section {
+    padding: 20px;
+  }
+
+  .disaster-alerts-section .recent-heading {
+    flex-direction: column;
+  }
+
+  .disaster-alerts-section .earthquake-header-right {
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+  .disaster-alert-row {
+    grid-template-columns: 46px minmax(0, 1fr);
+
+    gap: 12px;
+
+    padding: 14px;
+  }
+
+  .disaster-alert-icon {
+    width: 42px;
+    height: 42px;
+
+    font-size: 16px;
+  }
+
+  .disaster-alert-level {
+    grid-column: 2;
+
+    justify-self: start;
+
+    min-width: auto;
+  }
+
+  .disaster-alert-meta {
+    gap: 6px 10px;
+  }
+
+  .disaster-summary {
+    gap: 6px;
+  }
+
+  .disaster-summary-item {
+    padding: 6px 8px;
+  }
+
+  .disaster-map-container {
+    height: 420px;
+  }
+
+  .disaster-map {
+    min-height: 420px;
+  }
+
+  .map-legend {
+    left: 10px;
+
+    bottom: 10px;
+  }
+}
+
+/* =========================================================
+   MOBILE - SMALL
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .earthquake-header-right {
+    align-items: center;
+  }
+
+  .live-badge {
+    padding: 6px 9px;
+  }
+
+  .refresh-button {
+    padding: 7px 10px;
+  }
+
+  .earthquake-row {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .earthquake-link {
+    grid-column: auto;
+
+    width: fit-content;
+  }
+
+  .earthquake-meta {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 6px;
+  }
+
+  /* -------------------------------------------------------
+     DISASTER ALERT SMALL MOBILE
+     ------------------------------------------------------- */
+
+  .disaster-alerts-section {
+    padding: 16px;
+  }
+
+  .disaster-alerts-section .recent-heading h3 {
+    font-size: 16px;
+  }
+
+  .disaster-alert-row {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    padding: 14px;
+  }
+
+  .disaster-alert-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .disaster-alert-level {
+    grid-column: auto;
+
+    width: fit-content;
+  }
+
+  .disaster-alert-title strong {
+    font-size: 13px;
+  }
+
+  .disaster-summary-item {
+    font-size: 9px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
